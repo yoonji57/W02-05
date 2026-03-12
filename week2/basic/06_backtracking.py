@@ -6,7 +6,7 @@
 - 백트랙킹을 사용하여 가능한 모든 조합을 탐색합니다.
 - 조합은 순서가 없으므로 [1,2]와 [2,1]은 같은 조합입니다.
 
-입력:
+입력: 
 - n: 전체 숫자의 개수 (1부터 n까지)
 - k: 선택할 숫자의 개수
 
@@ -44,14 +44,27 @@ def combinations(n, k):
             current_combination: 현재까지 선택한 숫자들
         """
         # TODO: base case - k개를 모두 선택했으면 결과에 추가
-        pass
+        if len(current_combination) == k:
+            result.append(current_combination[:])
+            return
         
         # TODO: start부터 n까지 숫자를 하나씩 시도
-        ## TODO: 백트랙킹 3단계 구현
-        ## 1. 선택(Choose)
-        ## 2. 탐색(Explore)
-        ## 3. 취소(Unchoose)
-        pass
+        if start <= n:
+        
+            ## TODO: 백트랙킹 3단계 구현
+            ## 1. 선택(Choose) 
+            current_combination.append(start)
+                
+            ## 2. 탐색(Explore)
+            backtrack(start+1, current_combination)
+
+            ## 3. 취소(Unchoose)
+            current_combination.pop()
+            backtrack(start+1, current_combination)
+
+
+
+
     
     backtrack(1, [])
     return result
