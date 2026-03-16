@@ -19,9 +19,7 @@
 처리: 김철수 (우선순위: 3)
 
 힌트:
-- heapq 모듈 사용
-- heappush(): 힙에 추가
-- heappop(): 최소값 제거
+ 
 """
 
 import heapq
@@ -41,15 +39,20 @@ def process_emergency_room(patients):
     
     
     # TODO: 모든 환자를 힙에 추가
-    pass
+    for patient in patients:
+        heapq.heappush(heap, (patient[1], patient[0]))
         
     processed = []
     
     # TODO: 힙이 비어있지 않은 동안 반복
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
-    pass
-        
+    while heap:    
+
+        h = heapq.heappop(heap)
+        print(f'처리: {h[1]} (우선순위: {h[0]})')
+        processed.append(h[1])
+
     return processed
 
 # 테스트 케이스

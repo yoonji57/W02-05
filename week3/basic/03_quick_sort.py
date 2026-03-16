@@ -22,6 +22,9 @@
 - 재귀적으로 왼쪽과 오른쪽 부분 정렬
 """
 
+from platform import java_ver
+
+
 def partition(arr, low, high):
     """
     배열을 피벗 기준으로 분할하는 함수
@@ -35,19 +38,34 @@ def partition(arr, low, high):
         피벗의 최종 위치 인덱스
     """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
-    pass
+    pivot = arr[high]
     
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
-    pass
-    
+    i = low - 1
+    # 왜? low가 아니라 low - 1 
+    # i는 “피벗보다 작거나 같은 구간”의 마지막 인덱스 역할을 해야 하므로, 처음에는 그 구간이 비어 있다고 보고 한 칸 앞에서 시작해야 합니다. i = low로 두면 첫 번째로 작은 원소를 만났을 때의 스왑 위치가 어긋나서 분할이 잘못됨 
+
     # TODO: low부터 high-1까지 순회하면서
     ## 현재 원소가 피벗보다 작거나 같으면:
     ##   1. i를 1 증가
     ##   2. arr[i]와 arr[j]를 교환
-    pass
+    for j in range(low, high):
+        if arr[j] <= pivot:
+
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+
+        else:
+            continue
+
+        
+            
     
-    # TODO: 피벗을 올바른 위치(i+1)에 배치
-    pass
+    # TODO: 피벗을 올바른 위치(i+1)에 배치 (배열에서 arr[high]와 교환)
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    # arr[i + 1], p = p, arr[i + 1] 은 안됨...  arr[i + 1]에 있던 값이 변수 p로만 가고 배열에는 다시 안 들어가기 때문
+    # p는 피봇 값을 담은 변수이고, arr[high]는 피봇이 있던 자리
     
     return i + 1
 
@@ -64,7 +82,10 @@ def quick_sort_helper(arr, low, high):
     ## 분할하여 피벗 인덱스 얻기
     ## 피벗 왼쪽 부분 재귀 정렬
     ## 피벗 오른쪽 부분 재귀 정렬
-    pass 
+    if low < high:
+        p = partition(arr, low, high)
+        quick_sort_helper(arr, low, p - 1)
+        quick_sort_helper(arr, p + 1, high)
     
 
 def quick_sort(arr):

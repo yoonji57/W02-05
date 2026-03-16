@@ -42,8 +42,20 @@ def binary_search(arr, target):
     ## 같으면 mid 반환
     ## target이 더 크면 left = mid + 1
     ## target이 더 작으면 right = mid - 1
-    pass
-    
+    while (left <= right):
+        mid = (left + right) // 2
+        
+        if arr[mid] == target:
+            return mid
+        
+        elif arr[mid] < target:
+            left = mid + 1
+            binary_search(arr[left:], target)
+        
+        else:
+            right = mid - 1
+            binary_search(arr[:right], target)
+
     return -1
 
 # 테스트 케이스

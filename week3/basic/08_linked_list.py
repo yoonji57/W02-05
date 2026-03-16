@@ -22,6 +22,9 @@
 - print_list(): 모든 노드 출력
 """
 
+from turtle import heading
+
+
 class Node:
     """연결 리스트의 노드"""
     def __init__(self, data):
@@ -38,24 +41,30 @@ class LinkedList:
         new_node = Node(data)
         
         # TODO: 리스트가 비어있으면 head를 new_node로 설정
-        pass
+        if self.head is None:
+            self.head = new_node
         
         # TODO: 마지막 노드 찾기
-        pass
-        
+        else:
+            node = self.head
+            while node.next:
+                node = node.next
+            
         # TODO: 마지막 노드의 next를 new_node로 설정
-        pass
+            node.next = new_node
     
     def print_list(self):
         """리스트의 모든 값 출력"""
         values = []
         
         # TODO: head부터 시작
-        pass
+        node = self.head
         
         # TODO: 끝까지 순회하며 값 수집
-        pass
-        
+        while node:
+            values.append(node.data)
+            node = node.next
+
         return values
 
 # 테스트 케이스

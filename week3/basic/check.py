@@ -37,9 +37,9 @@ def check_solution(problem_file):
         return False, f"❌ 정답 파일을 찾을 수 없습니다: {output_file}"
     
     try:
-        # 문제 파일 실행
+        # 문제 파일 실행 (현재 인터프리터 사용 → Windows에서도 동작)
         result = subprocess.run(
-            ['python3', problem_file],
+            [sys.executable, problem_file],
             capture_output=True,
             text=True,
             timeout=10
